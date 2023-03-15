@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to Cart Page</title>
+    <!-- Link to Bootstrap CSS file -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <!-- Product details section -->
+        <div class="row">
+            <div class="col-md-4">
+                <img src="https://via.placeholder.com/150" class="img-fluid">
+            </div>
+            <div class="col-md-8">
+                <h3>Product Name</h3>
+                <p>Description of the product goes here.</p>
+                <h5>Price: ₹10.00</h5>
+            </div>
+        </div>
+
+        <!-- Add to cart form -->
+        <form class="mt-4">
+            <div class="form-group row">
+                <label for="quantity" class="col-sm-2 col-form-label">Quantity:</label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" id="quantity" value="1" min="1">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2">Total:</div>
+                <div class="col-sm-4">
+                    <strong id="total">₹10.00</strong>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-primary" id="add-to-cart-btn">Add to Cart</button>
+                    <a href="#" class="btn btn-secondary">Back to Shop</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Link to Bootstrap JS file -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Get quantity input and total price element
+        const quantityInput = document.getElementById('quantity');
+        const totalEl = document.getElementById('total');
+
+        // Calculate total price based on quantity
+        function calculateTotal() {
+            const price = 10; // Replace with your actual product price
+            const quantity = parseInt(quantityInput.value);
+            const total = price * quantity;
+            totalEl.innerText = '₹' + total.toFixed(2);
+        }
+
+        // Calculate total price when quantity changes
+        quantityInput.addEventListener('input', calculateTotal);
+
+        // Handle add to cart button click
+        const addToCartBtn = document.getElementById('add-to-cart-btn');
+        addToCartBtn.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get quantity from input and add to cart
+            const quantity = parseInt(quantityInput.value);
+            addToCart(quantity);
+
+            // Show success message
+            alert('Product added to cart!');
+        });
+
+        // Function to add item to cart (replace with your own implementation)
+        function addToCart(quantity) {
+            console.log(`Added ₹{quantity} items to cart.`);
+        }
+    </script>
+</body>
+
+</html>
